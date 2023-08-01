@@ -20,7 +20,7 @@
             @endfor
             </div>
             <div class="center">
-                <button class="label">LOAD MORE</button>
+                <a href="{{ route('comic.index')}}"  class="label">VEDI TUTTI I NOSTRI FUMETTI</a>
             </div>
         </div>
     </main>

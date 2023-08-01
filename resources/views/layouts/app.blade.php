@@ -22,7 +22,7 @@
         @yield('mainpagecontent')
         @yield('comicpagecontent')
         @yield('comicindex')
-
+        @yield('content')
 
     <footer>
         @include('partials.mainfooter')

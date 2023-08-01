@@ -16,11 +16,17 @@
 </head>
 
 <body>
+        @include('partials.header')
 
-    <main>
-        @yield('content')
-    </main>
 
+        @yield('mainpagecontent')
+        @yield('comicpagecontent')
+        @yield('comicindex')
+
+
+    <footer>
+        @include('partials.mainfooter')
+    </footer>
 </body>
 
 </html>

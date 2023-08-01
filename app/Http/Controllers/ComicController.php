@@ -15,7 +15,21 @@ class ComicController extends Controller
     public function index()
     {
         $comics = Comic::all();
-        return view('welcome', compact('comics'));
+        $menus = config('navBar.navBarMenu');
+        $shops = config('mainshop.shops');
+        $terms = config('terms.terms');
+        $social = config('social.social');
+        return view('comics.index', compact('comics','menus','shops','terms','social'));
+    }
+
+    public function home()
+    {
+        $comics = Comic::all();
+        $menus = config('navBar.navBarMenu');
+        $shops = config('mainshop.shops');
+        $terms = config('terms.terms');
+        $social = config('social.social');
+        return view('home', compact('comics','menus','shops','terms','social'));
     }
 
     /**
@@ -47,7 +61,11 @@ class ComicController extends Controller
      */
     public function show(Comic $comic)
     {
-        //
+        $menus = config('navBar.navBarMenu');
+        $shops = config('secondaryshop.shops');
+        $terms = config('terms.terms');
+        $social = config('social.social'); 
+        return view('comics.show', compact('comic','menus','shops','terms','social'));
     }
 
     /**

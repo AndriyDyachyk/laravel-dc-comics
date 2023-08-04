@@ -27,6 +27,11 @@
                     </div>
                     <p class="description">{{ $comic['description']}}</p>
                     <a class="btn btn-warning btn-sm" href="{{ route('comic.edit', $comic->index+1) }}">MODIFICA</a>
+                    <form action="{{route('comic.destroy', $comic) }}" method="POST" class="d-inline-block">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger btn-sm" href="{{ route('comic.edit', $comic->index+1) }}">ELIMINA</button>
+                    </form>
                 </div>
                 <!-- ad space -->
                 <div class="adv">

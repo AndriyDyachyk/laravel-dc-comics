@@ -26,6 +26,7 @@
                         </div>
                     </div>
                     <p class="description">{{ $comic['description']}}</p>
+                    <a class="btn btn-warning btn-sm" href="{{ route('comic.edit', $comic->index+1) }}">MODIFICA</a>
                 </div>
                 <!-- ad space -->
                 <div class="adv">

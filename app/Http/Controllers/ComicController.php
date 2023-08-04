@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comic;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 
 class ComicController extends Controller
 {
@@ -48,26 +49,17 @@ class ComicController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreComicRequestRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
         $form_data = $request->all();
 
         $comic = new Comic();
-        $comic->title = $form_data['title'];
-        $comic->description = $form_data['description'];
-        $comic->thumb = $form_data['thumb'];
-        $comic->thumb2 = $form_data['thumb2'];
-        $comic->cover_image = $form_data['cover_image'];
-        $comic->price = $form_data['price'];
-        $comic->series = $form_data['series'];
-        $comic->sale_date = $form_data['sale_date'];
-        $comic->type = $form_data['type'];
-        $comic->artists = $form_data['artists'];
-        $comic->writers = $form_data['writers'];
-        
+
+        $comic->fill($form_data);
+
         $comic->save();
 
         return redirect(route('comic.show', ['comic' => $comic->id]));
@@ -96,19 +88,26 @@ class ComicController extends Controller
      */
     public function edit(Comic $comic)
     {
-        //
+        $menus = config('navBar.navBarMenu');
+        $terms = config('terms.terms');
+        $social = config('social.social');
+        return view('comics.edit', compact('comic','menus','social','terms'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateComicRequest  $request
      * @param  \App\Models\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comic $comic)
+    public function update(UpdateComicRequest $request, Comic $comic)
     {
-        //
+        $form_data = $request->all();
+
+        $comic->update($form_data);
+
+        return redirect()->route('comic.show', $comic->id);
     }
 
     /**
@@ -119,6 +118,7 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+        return redirect()->route('comics.index');
     }
 }

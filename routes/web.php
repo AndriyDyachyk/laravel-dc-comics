@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComicController as ComicController;
+use Illuminate\Http\Requests\StoreComicRequest;
+use Illuminate\Http\Requests\UpdateComicRequest;
 
 /*
 |--------------------------------------------------------------------------

@@ -17,6 +17,9 @@
                 <div class="cover">
                     <img src="{{ $comic['thumb'] }}" alt="{{ $comic['title']}}">
                 </div>
+                <div>
+                    
+                </div>
                 <h5>{{ $comic['series']}}</h5>
             </a>
         @endforeach
